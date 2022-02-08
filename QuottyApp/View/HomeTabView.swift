@@ -97,7 +97,7 @@ struct BottomButton: View {
             Button {
                 
                 Task.init(priority: .background, operation: {
-                    
+                   
                     await viewModel.getQuote()
                     await viewModel.getAuthor()
                     
