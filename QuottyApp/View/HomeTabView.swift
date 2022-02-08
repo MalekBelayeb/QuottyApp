@@ -26,13 +26,54 @@ struct HomeTabView: View {
         
     @StateObject var viewModelQuote = QuoteViewModel.sharedInstance
     @StateObject var viewModelLanguage = LanguageViewModel.sharedInstance
+    @State var bottomSheetOptions : BottomSheetOptions = BottomSheetOptions()
     
     var body: some View {
         
-        ZStack{
+            ZStack(alignment:.center)
+            {
+                
+                BackgroundView().background(Color.lightBlueColor)
+                ArcShape().foregroundColor(Color.pinkColor)
             
-            
-        }
+                VStack(spacing:70)
+                {
+                
+                    Spacer()
+
+                    VStack
+                    {
+                        
+                        HStack
+                        {
+                            Spacer()
+                            ChangeLanguageTopButton(bottomSheetOptions: $bottomSheetOptions)
+                        }
+                        
+                        CardWidget(author:viewModelQuote.author,quote:viewModelQuote.quote)
+
+                    }
+                    
+                    BottomButton()
+                    Spacer()
+
+                }.frame(maxHeight:.infinity)
+                
+
+            }.overlay(alignment: .bottom, content: {
+                
+                BottomSheet(withExitOption:true,withDraggingEnabled:true,sheetStyle: Binding.constant(self.bottomSheetOptions.bottomSheetStyle)){
+                    
+                    if self.bottomSheetOptions.bottomSheetMode == .LANGUAGE_LIST
+                    {
+                        BottomSheetContent()
+                    }
+                    
+                }
+                
+                
+            }).navigationBarTitle("Quotes App").edgesIgnoringSafeArea(.all).foregroundColor(.white)
+        
     
     }
 }
@@ -67,12 +108,14 @@ struct BackgroundView:View
 struct ChangeLanguageTopButton:View
 {
         
+    @Binding var bottomSheetOptions:BottomSheetOptions
+    
     var body: some View
     {
         
         Button{
             
-            BottomSheetManager.sharedInstance.sheetManager = SheetManager(bottomSheetStyle: .Quarter, bottomSheetMode: .LANGUAGE_LIST)
+            bottomSheetOptions = BottomSheetOptions(bottomSheetStyle: .Quarter, bottomSheetMode: .LANGUAGE_LIST)
             
         }label:{
             
@@ -115,8 +158,3 @@ struct BottomButton: View {
     }
 }
 
-struct HomeTabView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeTabView()
-    }
-}

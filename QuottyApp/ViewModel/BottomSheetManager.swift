@@ -22,28 +22,19 @@ enum SheetMode
     
     case AUTHOR_DETAIL
     case LANGUAGE_LIST
-    
+    case NONE
 }
 
-class SheetManager
-{
-         
-    
-    var bottomSheetStyle:SheetStyle?
-    var bottomSheetMode:SheetMode?
-       
-    init(bottomSheetStyle:SheetStyle = .Quarter,bottomSheetMode:SheetMode)
-    {
-        self.bottomSheetMode = bottomSheetMode
-        self.bottomSheetStyle = bottomSheetStyle
-    }
-    
-}
 
-class BottomSheetManager
+class BottomSheetOptions
 {
                 
-    @Published var sheetManager:SheetManager?
-    public static let sharedInstance = BottomSheetManager()
-    
+    var bottomSheetStyle:SheetStyle
+    var bottomSheetMode:SheetMode
+        
+    init(bottomSheetStyle:SheetStyle = .Hidden,bottomSheetMode:SheetMode = .NONE)
+    {
+        self.bottomSheetStyle = bottomSheetStyle
+        self.bottomSheetMode = bottomSheetMode
+    }
 }
