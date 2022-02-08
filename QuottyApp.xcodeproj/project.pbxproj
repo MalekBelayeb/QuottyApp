@@ -118,7 +118,6 @@
 			isa = PBXGroup;
 			children = (
 				079C704427B29B37003F7A48 /* Widgets */,
-				079C703C27B29A4E003F7A48 /* Widgets */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -145,13 +144,6 @@
 			children = (
 			);
 			path = Utils;
-			sourceTree = "<group>";
-		};
-		079C703C27B29A4E003F7A48 /* Widgets */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Widgets;
 			sourceTree = "<group>";
 		};
 		079C704427B29B37003F7A48 /* Widgets */ = {
