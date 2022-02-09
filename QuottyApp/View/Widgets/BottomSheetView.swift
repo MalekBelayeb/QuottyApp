@@ -21,7 +21,6 @@ struct BottomSheet<Content: View>:View
     
     @State var draggingLocation:CGPoint?
     @State var bottomSheetHeight:CGFloat?
-    
 
     init(withExitOption:Bool = false,withDraggingEnabled:Bool = false,topBarBlurStyle:UIBlurEffect.Style = .light,bodyBlurStyle:UIBlurEffect.Style = .light,sheetStyle:Binding<SheetStyle>,@ViewBuilder content: @escaping () -> Content)
     {
