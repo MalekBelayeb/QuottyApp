@@ -49,6 +49,9 @@ class WebServiceProvider
         
         guard let url = URL(string: urlStr) else {fatalError("Missing URL")}
         
+        
+        
+        
         let urlRequest = URLRequest(url: url)
                 let (data,response) =
         
