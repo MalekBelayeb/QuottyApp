@@ -10,6 +10,7 @@ import SwiftUI
 
 struct FavoriteTabView: View {
     
+    
     init()
     {
         
@@ -17,6 +18,7 @@ struct FavoriteTabView: View {
 
     }
 
+    
     var body: some View {
         
             VStack(alignment:.leading){

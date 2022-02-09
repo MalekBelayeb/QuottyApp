@@ -26,7 +26,7 @@ enum SheetMode
 }
 
 
-class BottomSheetOptions
+class BottomSheetOptions:ObservableObject
 {
                 
     var bottomSheetStyle:SheetStyle

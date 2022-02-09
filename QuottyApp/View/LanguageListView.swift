@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 
-struct BottomSheetContent:View
+struct LanguageListContent:View
 {
     
     @StateObject var viewModelLanguage = LanguageViewModel.sharedInstance

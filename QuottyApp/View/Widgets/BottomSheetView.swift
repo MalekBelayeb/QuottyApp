@@ -11,7 +11,7 @@ struct BottomSheet<Content: View>:View
 {
     
     let content:() -> Content
-    var sheetStyle:Binding<SheetStyle>
+    var bottomSheetOptions:Binding<BottomSheetOptions>
     
     var withExitOption:Bool
     var withDraggingEnabled:Bool
@@ -22,10 +22,10 @@ struct BottomSheet<Content: View>:View
     @State var draggingLocation:CGPoint?
     @State var bottomSheetHeight:CGFloat?
 
-    init(withExitOption:Bool = false,withDraggingEnabled:Bool = false,topBarBlurStyle:UIBlurEffect.Style = .light,bodyBlurStyle:UIBlurEffect.Style = .light,sheetStyle:Binding<SheetStyle>,@ViewBuilder content: @escaping () -> Content)
+    init(withExitOption:Bool = false,withDraggingEnabled:Bool = false,topBarBlurStyle:UIBlurEffect.Style = .light,bottomSheetOptions:Binding<BottomSheetOptions>,bodyBlurStyle:UIBlurEffect.Style = .light,@ViewBuilder content: @escaping () -> Content)
     {
         self.content = content
-        self.sheetStyle = sheetStyle
+        self.bottomSheetOptions = bottomSheetOptions
         self.topBarBlurStyle = topBarBlurStyle
         self.bodyBlurStyle = bodyBlurStyle
         self.withExitOption = withExitOption
@@ -36,7 +36,7 @@ struct BottomSheet<Content: View>:View
     private func getInitialHeight() -> CGFloat
     {
         
-        switch sheetStyle.wrappedValue
+        switch bottomSheetOptions.bottomSheetStyle.wrappedValue
         {
         case .Hidden:
                 
@@ -92,8 +92,7 @@ struct BottomSheet<Content: View>:View
                 if draggingYValue >= (initialHeight / 2)
                 {
                     
-                    // make it close
-                    self.sheetStyle.wrappedValue = .Hidden
+                    self.bottomSheetOptions.bottomSheetStyle.wrappedValue = .Hidden
                     
                 }
                 
@@ -109,7 +108,7 @@ struct BottomSheet<Content: View>:View
     func getAnimation() -> Animation
     {
         
-        if self.sheetStyle.wrappedValue == .Hidden
+        if self.bottomSheetOptions.bottomSheetStyle.wrappedValue == .Hidden
         {
 
             return .easeOut
@@ -147,8 +146,8 @@ struct BottomSheet<Content: View>:View
 
                             Button{
                                     
-                                self.sheetStyle.wrappedValue = .Hidden
-
+                                self.bottomSheetOptions.bottomSheetStyle.wrappedValue = .Hidden
+                                
                             }label: {
                                 
                                 Image(systemName: "xmark")

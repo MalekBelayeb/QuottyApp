@@ -62,11 +62,15 @@ struct HomeTabView: View {
 
             }.overlay(alignment: .bottom, content: {
                 
-                BottomSheet(withExitOption:true,withDraggingEnabled:true,sheetStyle: Binding.constant(self.bottomSheetOptions.bottomSheetStyle)){
+                BottomSheet(withExitOption:true,withDraggingEnabled:true,bottomSheetOptions: $bottomSheetOptions){
                     
                     if self.bottomSheetOptions.bottomSheetMode == .LANGUAGE_LIST
                     {
-                        BottomSheetContent()
+                        LanguageListContent()
+                    
+                    }else if self.bottomSheetOptions.bottomSheetMode == .AUTHOR_DETAIL
+                    {
+                        
                     }
                     
                 }
