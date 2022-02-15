@@ -27,6 +27,7 @@ struct HomeTabView: View {
     @StateObject var viewModelQuote = QuoteViewModel.sharedInstance
     @StateObject var viewModelLanguage = LanguageViewModel.sharedInstance
     @State var bottomSheetOptions : BottomSheetOptions = BottomSheetOptions()
+    @State var activeLink:Bool = false
     
     var body: some View {
         
@@ -35,12 +36,12 @@ struct HomeTabView: View {
                 
                 BackgroundView().background(Color.lightBlueColor)
                 ArcShape().foregroundColor(Color.pinkColor)
-            
+                
                 VStack(spacing:70)
                 {
-                
+                    
                     Spacer()
-
+                    
                     VStack
                     {
                         
@@ -53,13 +54,12 @@ struct HomeTabView: View {
                         CardWidget(author:viewModelQuote.author,quote:viewModelQuote.quote)
 
                     }
-                    
+                        
                     BottomButton()
                     Spacer()
-
+                    
                 }.frame(maxHeight:.infinity)
                 
-
             }.overlay(alignment: .bottom, content: {
                 
                 BottomSheet(withExitOption:true,withDraggingEnabled:true,bottomSheetOptions: $bottomSheetOptions){
@@ -75,10 +75,8 @@ struct HomeTabView: View {
                     
                 }
                 
-                
             }).navigationBarTitle("Quotes App").edgesIgnoringSafeArea(.all).foregroundColor(.white)
         
-    
     }
 }
 

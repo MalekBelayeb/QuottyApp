@@ -54,7 +54,14 @@ class QuoteViewModel:ObservableObject
                         self.quote = try await WebServiceProvider.getQuotesByLanguage(language: "en")
                         
                     }
-                        
+                    
+                    PersistenceController.shared.create(author: " eeeeeee ", content: "fffffffffff ff ff f f")
+                    PersistenceController.shared.create(author: " ffffaa ", content: "fffffffffff ff ff f f")
+
+                    PersistenceController.shared.save(inMemory: true)
+                    
+                    print(" ---------> ",PersistenceController.shared.getAll().count)
+                    
                 }catch{
                         
                 }
