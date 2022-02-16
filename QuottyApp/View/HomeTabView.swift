@@ -26,6 +26,7 @@ struct HomeTabView: View {
         
     @StateObject var viewModelQuote = QuoteViewModel.sharedInstance
     @StateObject var viewModelLanguage = LanguageViewModel.sharedInstance
+    
     @State var bottomSheetOptions : BottomSheetOptions = BottomSheetOptions()
     @State var activeLink:Bool = false
     
@@ -51,7 +52,7 @@ struct HomeTabView: View {
                             ChangeLanguageTopButton(bottomSheetOptions: $bottomSheetOptions)
                         }
                         
-                        CardWidget(author:viewModelQuote.author,quote:viewModelQuote.quote)
+                        CardWidget(author:viewModelQuote.quoteItem?.userResponse,quote:viewModelQuote.quoteItem?.quoteResponse,bottomSheetOptions: $bottomSheetOptions)
 
                     }
                         
@@ -62,20 +63,23 @@ struct HomeTabView: View {
                 
             }.overlay(alignment: .bottom, content: {
                 
-                BottomSheet(withExitOption:true,withDraggingEnabled:true,bottomSheetOptions: $bottomSheetOptions){
+                BottomSheet(withExitOption:false,withDraggingEnabled:true,bottomSheetOptions: $bottomSheetOptions){
                     
                     if self.bottomSheetOptions.bottomSheetMode == .LANGUAGE_LIST
                     {
+                        
                         LanguageListContent()
-                    
+                        
                     }else if self.bottomSheetOptions.bottomSheetMode == .AUTHOR_DETAIL
                     {
-                        
+                    
+                        AuthorDetailView(author: viewModelQuote.quoteItem?.userResponse)
+                    
                     }
                     
                 }
                 
-            }).navigationBarTitle("Quotes App").edgesIgnoringSafeArea(.all).foregroundColor(.white)
+            }).navigationBarTitle("Quotes App").edgesIgnoringSafeArea(.all)
         
     }
 }
@@ -89,7 +93,7 @@ struct BackgroundView:View
         ZStack{
                 
                 VStack(alignment:.leading){
-                    
+                        
                     HStack
                     {
                             
@@ -117,7 +121,7 @@ struct ChangeLanguageTopButton:View
         
         Button{
             
-            bottomSheetOptions = BottomSheetOptions(bottomSheetStyle: .Quarter, bottomSheetMode: .LANGUAGE_LIST)
+            bottomSheetOptions = BottomSheetOptions(bottomSheetStyle: .Half, bottomSheetMode: .LANGUAGE_LIST)
             
         }label:{
             
@@ -141,12 +145,14 @@ struct BottomButton: View {
                 
             Button {
                 
-                Task.init(priority: .background, operation: {
-                   
-                    await viewModel.getQuote()
-                    await viewModel.getAuthor()
+                DispatchQueue.main.async {
                     
-                })
+                    Task{
+                        await viewModel.fetchQuoteItem()
+                       
+                    }
+                   
+                }
                 
             }label:{
                 

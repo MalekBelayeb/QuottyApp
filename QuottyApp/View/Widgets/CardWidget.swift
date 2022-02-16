@@ -11,7 +11,8 @@ struct CardWidget: View {
     
     var author:RandomUserResponse?
     var quote:QuotesResponse?
-    
+    @Binding var bottomSheetOptions : BottomSheetOptions
+
     var body: some View {
     
         VStack(spacing:20)
@@ -40,7 +41,11 @@ struct CardWidget: View {
                         
                     }
                     
-                }.frame(maxWidth:.infinity,alignment: .topLeading).padding(.top,20).padding(.leading,20)
+                }.frame(maxWidth:.infinity,alignment: .topLeading).padding(.top,20).padding(.leading,20).onTapGesture(perform: {
+                    
+                    self.bottomSheetOptions = BottomSheetOptions(bottomSheetStyle: .Half, bottomSheetMode: .AUTHOR_DETAIL)
+
+                })
           
             HStack{
                 
@@ -90,11 +95,3 @@ struct LikeButton: View {
 
 
 
-struct CardWidget_Previews: PreviewProvider {
-    static var previews: some View {
-        
-        let author = RandomUserResponse(results: [UserInfo(name: UserName(title: "Mr", first: "Malek", last: "Belayeb"), picture: Picture(large: "aaaaa", medium: "https://randomuser.me/api/portraits/med/men/71.jpg", thumbnail: "aaaaa"), location: Location(city: "aaaaa", state: "aaaaa", country: "aaaaa"), email: "ssssss")])
-        
-        CardWidget(author: author)
-    }
-}

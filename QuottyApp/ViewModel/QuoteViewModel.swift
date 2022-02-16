@@ -10,65 +10,65 @@ import Foundation
 class QuoteViewModel:ObservableObject
 {
     
-    @Published var quote:QuotesResponse?
-    @Published var author:RandomUserResponse?
+    @Published var quoteItem:QuoteItem?
     
     public static let sharedInstance = QuoteViewModel()
     
-    func getAuthor() async
+    func getAuthor() async -> RandomUserResponse?
     {
-        
-        DispatchQueue.main.async {
+
+        do{
+
+            return try await WebServiceProvider.getRandomUser()
             
-            Task
-            {
-                do{
+        }catch{
             
-                    self.author = try await WebServiceProvider.getRandomUser()
-             
-                }catch{
-                    
-                }
-            }
+            return nil
+            print(error)
             
         }
         
     }
     
-    func getQuote() async
+    func getQuote() async -> QuotesResponse?
+    {
+
+        do{
+            
+            if let lng = LanguageViewModel.sharedInstance.selectedLanguage
+            {
+                
+                return try await WebServiceProvider.getQuotesByLanguage(language: lng.code!)
+                
+            }else{
+                
+                return try await WebServiceProvider.getQuotesByLanguage(language: "en")
+                
+            }
+            
+        }catch{
+            
+            print(error)
+            return nil
+        }
+        
+    }
+    
+    func fetchQuoteItem() async
     {
         
         DispatchQueue.main.async {
             
             Task{
                 
-                do{
-                    
-                    if let lng = LanguageViewModel.sharedInstance.selectedLanguage
-                    {
-                        
-                        self.quote = try await WebServiceProvider.getQuotesByLanguage(language: lng.code!)
-                        
-                    }else{
-                        
-                        self.quote = try await WebServiceProvider.getQuotesByLanguage(language: "en")
-                        
-                    }
-                    
-                    PersistenceController.shared.create(author: " eeeeeee ", content: "fffffffffff ff ff f f")
-                    PersistenceController.shared.create(author: " ffffaa ", content: "fffffffffff ff ff f f")
-
-                    PersistenceController.shared.save(inMemory: true)
-                    
-                    print(" ---------> ",PersistenceController.shared.getAll().count)
-                    
-                }catch{
-                        
-                }
-                        
+                let quote = await self.getQuote()
+                let author = await self.getAuthor()
+                
+                self.quoteItem = QuoteItem(quoteResponse: quote, userResponse:author)
             }
             
         }
         
     }
+    
 }

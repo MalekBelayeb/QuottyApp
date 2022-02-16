@@ -10,7 +10,6 @@ import CoreData
 
 struct ContentView: View {
     
-    @Environment(\.managedObjectContext) private var viewContext
     
     @StateObject var viewModel = QuoteViewModel.sharedInstance
     
@@ -33,10 +32,18 @@ struct ContentView: View {
             }.navigationBarTitleDisplayMode(.inline).edgesIgnoringSafeArea(.all).tabViewStyle(PageTabViewStyle())
                 .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .automatic)).task {
                     
-                    await viewModel.getQuote()
-                    await viewModel.getAuthor()
-                   
+                    DispatchQueue.main.async {
+                        Task{
+                            
+                            await viewModel.fetchQuoteItem()
+                            
+                        }
+                        
+                    }
+            
             }
+            
+            
         }
          
     }

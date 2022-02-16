@@ -7,46 +7,48 @@
 
 import CoreData
 
-struct PersistenceController {
+class PersistenceController {
     
-    static let shared = PersistenceController()
+    static let localPersistence = PersistenceController(inMemory: true)
+    static let dbPersistence = PersistenceController()
     
-    let container: NSPersistentContainer = {
-        
-        let persistentContainer = NSPersistentContainer(name: "QuottyApp")
-        
-        persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
-        
-        return persistentContainer
-        
-    }()
+    let container: NSPersistentContainer
+    var containerIsLoaded = false
+    let containerName = "QuottyApp"
     
-    
-    func create(author:String,content:String)
+    init(inMemory:Bool = false)
     {
-            
-         let entity = NSEntityDescription.entity(forEntityName: "QuoteEntity", in : self.container.viewContext)
-         guard let entity = entity else {return}
-         
-         let record = NSManagedObject(entity: entity, insertInto: self.container.viewContext)
-         record.setValue(author, forKey: "author")
-         record.setValue(content, forKey: "content")
-         
-     }
-    
-    func save(inMemory:Bool = false)
-    {
+        
+        container = NSPersistentContainer(name: containerName)
+        container.viewContext.automaticallyMergesChangesFromParent = true
         
         if inMemory
         {
-            self.container.persistentStoreDescriptions.first?.url = URL(fileURLWithPath: "/dev/null")
+            container.persistentStoreDescriptions.first?.url = URL(fileURLWithPath: "/dev/null")
         }
         
-        if self.container.viewContext.hasChanges
+        container.loadPersistentStores(completionHandler: {
+            description,error in
+            
+            if error == nil
+            {
+                self.containerIsLoaded = true
+            }
+            
+        })
+        
+    }
+    
+    func save()
+    {
+    
+        if self.container.viewContext.hasChanges && containerIsLoaded
         {
+        
             do{
                 
                 try self.container.viewContext.save()
+                container.viewContext.reset()
                 
             }catch let err as NSError {
                 
@@ -54,96 +56,65 @@ struct PersistenceController {
 
             }
         }
-       
+        
     }
-    
-     /*
-     func deleteAll()
-     {
+     
+    func deleteAll<T>(forType:T.Type,byCriteria predicate:NSPredicate? = nil)
+    {
          
-         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Formation")
-
+         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: String(describing: T.self))
+         fetchRequest.predicate = predicate
          let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+         
+         if containerIsLoaded
+         {
+             do {
+                 
+                 try self.container.viewContext.execute(batchDeleteRequest)
 
-         do {
-             
-             try context.execute(batchDeleteRequest)
+             } catch let err as NSError {
+                 
+                 print("Could not delete. \(err)")
 
-         } catch let err as NSError {
-             print("Could not delete. \(err)")
-
+             }
          }
          
      }
     
-    func deleteManyByCriteria()
+    func getAll<T>(forType:T.Type,sort:NSSortDescriptor? = nil,predicate: NSPredicate? = nil) -> [T]
     {
+        let entityDescription =
+        NSEntityDescription.entity(forEntityName: String(describing: T.self),
+                                   in: self.container.viewContext)
         
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Formation")
+        let request = NSFetchRequest<NSFetchRequestResult>()
+          
+        request.entity = entityDescription
+        
+        if let sort = sort {
+            request.sortDescriptors = [sort]
+        }
+        
+        if let predicate = predicate {
+            request.predicate = predicate
+        }
+        
+        var objects:[Any] = []
+        if containerIsLoaded
+        {
 
-        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+            do
+            {
+                     
+                objects = try self.container.viewContext.fetch(request)
 
-        do {
-            
-            try context.execute(batchDeleteRequest)
-
-        } catch let err as NSError {
-            print("Could not delete. \(err)")
+            } catch {
+                   print("Unable to fetch.")
+            }
 
         }
         
-    }
-    
-    func getManyByCriteria()
-    {
-
-        var objects:[Any] = []
-           do {
-            
-                let entityDescription =
-                NSEntityDescription.entity(forEntityName: "Formation",
-                                           in: context)
-
-                let request = NSFetchRequest<NSFetchRequestResult>()
-                  
-                request.entity = entityDescription
-
-                objects = try context.fetch(request)
-
-
-              } catch {
-                  print("Unable to fetch.")
-              }
-        
-        return objects as! [Formation];
-
-    }
-     
-
-    */
-    
-    func getAll() -> [QuoteEntity]
-    {
-
-        var objects:[Any] = []
-           do {
-            
-                let entityDescription =
-                NSEntityDescription.entity(forEntityName: "QuoteEntity",
-                                           in: self.container.viewContext)
-                
-                let request = NSFetchRequest<NSFetchRequestResult>()
-                  
-                request.entity = entityDescription
-
-               objects = try self.container.viewContext.fetch(request)
-
-
-              } catch {
-                  print("Unable to fetch.")
-              }
-        
-        return objects as! [QuoteEntity];
+        return objects as! [T];
 
     }
     

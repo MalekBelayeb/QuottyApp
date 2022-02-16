@@ -27,6 +27,7 @@
 		079C705727B29BBA003F7A48 /* LanguageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079C705427B29BBA003F7A48 /* LanguageViewModel.swift */; };
 		079C705A27B29BDC003F7A48 /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079C705827B29BDC003F7A48 /* Quote.swift */; };
 		079C705B27B29BDC003F7A48 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079C705927B29BDC003F7A48 /* User.swift */; };
+		07EE0C3627BD3810002F745C /* QuoteItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EE0C3527BD3810002F745C /* QuoteItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,8 @@
 		079C705427B29BBA003F7A48 /* LanguageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageViewModel.swift; sourceTree = "<group>"; };
 		079C705827B29BDC003F7A48 /* Quote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
 		079C705927B29BDC003F7A48 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		07EE0C2C27BCF6B2002F745C /* QuottyApp 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "QuottyApp 2.xcdatamodel"; sourceTree = "<group>"; };
+		07EE0C3527BD3810002F745C /* QuoteItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,8 +133,8 @@
 		079C703A27B29A3C003F7A48 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				079C705827B29BDC003F7A48 /* Quote.swift */,
-				079C705927B29BDC003F7A48 /* User.swift */,
+				07EE0C3427BD37F7002F745C /* ResponseModel */,
+				07EE0C3527BD3810002F745C /* QuoteItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -153,6 +156,15 @@
 				079C704627B29B37003F7A48 /* CardWidget.swift */,
 			);
 			path = Widgets;
+			sourceTree = "<group>";
+		};
+		07EE0C3427BD37F7002F745C /* ResponseModel */ = {
+			isa = PBXGroup;
+			children = (
+				079C705827B29BDC003F7A48 /* Quote.swift */,
+				079C705927B29BDC003F7A48 /* User.swift */,
+			);
+			path = ResponseModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -239,6 +251,7 @@
 				079C705A27B29BDC003F7A48 /* Quote.swift in Sources */,
 				079C704C27B29B38003F7A48 /* BlurView.swift in Sources */,
 				079C704227B29AEA003F7A48 /* BottomSheetView.swift in Sources */,
+				07EE0C3627BD3810002F745C /* QuoteItem.swift in Sources */,
 				079C705B27B29BDC003F7A48 /* User.swift in Sources */,
 				079C705127B29B38003F7A48 /* HomeTabView.swift in Sources */,
 				079C704F27B29B38003F7A48 /* AuthorDetailView.swift in Sources */,
@@ -454,6 +467,7 @@
 		079C703027B299F8003F7A48 /* QuottyApp.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				07EE0C2C27BCF6B2002F745C /* QuottyApp 2.xcdatamodel */,
 				079C703127B299F8003F7A48 /* QuottyApp.xcdatamodel */,
 			);
 			currentVersion = 079C703127B299F8003F7A48 /* QuottyApp.xcdatamodel */;

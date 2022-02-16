@@ -10,12 +10,12 @@ import SwiftUI
 @main
 struct QuottyAppApp: App {
     
-    let persistenceController = PersistenceController.shared
+    let persistenceController = PersistenceController.dbPersistence
 
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
+    
 }

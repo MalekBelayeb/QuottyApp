@@ -15,6 +15,7 @@ struct QuotesResponse:Decodable
     let content:String?
     let url:String?
     let orginator:Orginator?
+    
 }
 
 struct Orginator:Decodable
@@ -24,3 +25,5 @@ struct Orginator:Decodable
     let url:String?
     
 }
+
+

@@ -15,13 +15,14 @@ struct AuthorDetailView: View {
         
         VStack(spacing:20)
         {
-            
+                
                 HStack
                 {
                     if let author = author,let authorResult = author.results,let firstAuthResult = authorResult.first
                     {
+                        
                         if let picture = firstAuthResult.picture,let imgUrl =  picture.medium {
-                                                
+                            
                             AsyncImage(url: URL(string: imgUrl)) { image in
                                 image.resizable().clipShape(Circle())
                             } placeholder: {
@@ -40,9 +41,7 @@ struct AuthorDetailView: View {
                     }
                     
                 }.frame(maxWidth:.infinity,alignment: .topLeading).padding(.top,20).padding(.leading,20)
-          
-
-            
+        
             Spacer()
             
         }
