@@ -10,6 +10,7 @@ import CoreData
 class PersistenceController {
     
     static let localPersistence = PersistenceController(inMemory: true)
+    
     static let dbPersistence = PersistenceController()
     
     let container: NSPersistentContainer
@@ -38,7 +39,7 @@ class PersistenceController {
         })
         
     }
-    
+        
     func save()
     {
     
@@ -81,8 +82,9 @@ class PersistenceController {
          
      }
     
-    func getAll<T>(forType:T.Type,sort:NSSortDescriptor? = nil,predicate: NSPredicate? = nil) -> [T]
+    func getAll<T>(forType:T.Type,sort:NSSortDescriptor? = nil, byCriteria predicate: NSPredicate? = nil) -> [T]
     {
+        
         let entityDescription =
         NSEntityDescription.entity(forEntityName: String(describing: T.self),
                                    in: self.container.viewContext)

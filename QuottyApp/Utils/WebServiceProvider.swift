@@ -50,14 +50,15 @@ class WebServiceProvider
         guard let url = URL(string: urlStr) else {fatalError("Missing URL")}
         
         
-        
-        
         let urlRequest = URLRequest(url: url)
                 let (data,response) =
         
         try await URLSession.shared.data(for: urlRequest)
         
-        guard (response as? HTTPURLResponse)?.statusCode == 200 else { fatalError("Error fetching weather data")}
+        guard (response as? HTTPURLResponse)?.statusCode == 200 else {
+        print((response as? HTTPURLResponse)?.statusCode)
+            fatalError()
+        }
         
         let decodedData = try JSONDecoder().decode(RandomUserResponse.self, from: data)
         

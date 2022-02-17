@@ -15,7 +15,7 @@ struct FavoriteTabView: View {
     {
         
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-
+        
     }
 
     
@@ -30,7 +30,7 @@ struct FavoriteTabView: View {
                 
                 }.padding(.top,60)
  
-            }.frame(maxWidth:.infinity,maxHeight: .infinity).navigationBarTitle("Favorite Screen").background(Color.pinkColor)
+            }.frame(maxWidth:.infinity,maxHeight: .infinity).background(Color.pinkColor)
         
     }
 }

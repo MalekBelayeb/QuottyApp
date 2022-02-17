@@ -28,8 +28,7 @@ struct HomeTabView: View {
     @StateObject var viewModelLanguage = LanguageViewModel.sharedInstance
     
     @State var bottomSheetOptions : BottomSheetOptions = BottomSheetOptions()
-    @State var activeLink:Bool = false
-    
+
     var body: some View {
         
             ZStack(alignment:.center)
@@ -48,14 +47,16 @@ struct HomeTabView: View {
                         
                         HStack
                         {
+                                
                             Spacer()
                             ChangeLanguageTopButton(bottomSheetOptions: $bottomSheetOptions)
+                            
                         }
                         
-                        CardWidget(author:viewModelQuote.quoteItem?.userResponse,quote:viewModelQuote.quoteItem?.quoteResponse,bottomSheetOptions: $bottomSheetOptions)
-
-                    }
+                            CardWidget(author:viewModelQuote.quoteItem?.userResponse,quote:viewModelQuote.quoteItem?.quoteResponse,bottomSheetOptions:  $bottomSheetOptions)
                         
+                    }
+                    
                     BottomButton()
                     Spacer()
                     
@@ -72,21 +73,20 @@ struct HomeTabView: View {
                         
                     }else if self.bottomSheetOptions.bottomSheetMode == .AUTHOR_DETAIL
                     {
-                    
-                        AuthorDetailView(author: viewModelQuote.quoteItem?.userResponse)
-                    
+                        
+                        AuthorDetailView(author: viewModelQuote.quoteItem?.userResponse?.userInfo?.first)
+                        
                     }
                     
                 }
                 
-            }).navigationBarTitle("Quotes App").edgesIgnoringSafeArea(.all)
-        
+            })
+            
     }
 }
 
 struct BackgroundView:View
 {
-     
     var body: some View
     {
         
@@ -96,19 +96,18 @@ struct BackgroundView:View
                         
                     HStack
                     {
-                            
+                        
                         Spacer()
                         
                     }.frame(maxWidth:.infinity).padding(.top,60)
                     
-                    Spacer()
-
+                        Spacer()
+        
                 }.edgesIgnoringSafeArea(.all)
                     
         }.frame(alignment:.top)
         
     }
-    
 }
 
 struct ChangeLanguageTopButton:View
@@ -137,7 +136,7 @@ struct ChangeLanguageTopButton:View
 struct BottomButton: View {
 
     @StateObject var viewModel = QuoteViewModel.sharedInstance
-
+    
     var body: some View {
                 
         ZStack

@@ -46,7 +46,12 @@ struct UserInfo : Decodable
 
 struct RandomUserResponse:Decodable
 {
+
+    let userInfo:[UserInfo]?
     
-    let results:[UserInfo]?
-    
+    enum CodingKeys: String, CodingKey
+    {
+        case userInfo = "results"
+    }
+
 }

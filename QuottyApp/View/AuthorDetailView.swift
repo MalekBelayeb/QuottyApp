@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AuthorDetailView: View {
     
-    var author:RandomUserResponse?
+    var author:UserInfo?
 
     var body: some View {
         
@@ -18,15 +18,22 @@ struct AuthorDetailView: View {
                 
                 HStack
                 {
-                    if let author = author,let authorResult = author.results,let firstAuthResult = authorResult.first
+                    
+                    if let firstAuthResult = author
                     {
                         
-                        if let picture = firstAuthResult.picture,let imgUrl =  picture.medium {
+                        if let picture = firstAuthResult.picture,let imgUrl = picture.medium {
+                                
                             
                             AsyncImage(url: URL(string: imgUrl)) { image in
+                                
                                 image.resizable().clipShape(Circle())
+                                
+                                
                             } placeholder: {
+                                
                                 ProgressView()
+                            
                             }
                             .frame(width: 60, height: 60)
                             
@@ -42,6 +49,40 @@ struct AuthorDetailView: View {
                     
                 }.frame(maxWidth:.infinity,alignment: .topLeading).padding(.top,20).padding(.leading,20)
         
+            
+            HStack
+            {
+                
+                VStack(alignment:.leading, spacing:10)
+                    {
+
+                        HStack{
+
+                            Text("Email:").foregroundColor(.white).bold()
+
+                            if let author = self.author, let email = author.email
+                            {
+                                Text(email).foregroundColor(.white).bold().padding(.leading,10)
+                            }
+                            
+                        }
+                        
+                        HStack{
+                            
+                            Text("Adress:").foregroundColor(.white).bold()
+                            
+                            if let author = author,let location = author.location {
+                                
+                                Text(location.city! + ", " + location.state! + ", " + location.country!).foregroundColor(.white)
+                                
+                            }
+                            
+                        }
+                        
+                    }.padding(10)
+                
+            }.frame(maxWidth:.infinity,alignment:.leading)
+           
             Spacer()
             
         }

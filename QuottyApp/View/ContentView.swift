@@ -29,10 +29,11 @@ struct ContentView: View {
                     
                 }
                     
-            }.navigationBarTitleDisplayMode(.inline).edgesIgnoringSafeArea(.all).tabViewStyle(PageTabViewStyle())
+            }.edgesIgnoringSafeArea(.all).navigationBarHidden(true).tabViewStyle(PageTabViewStyle())
                 .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .automatic)).task {
                     
                     DispatchQueue.main.async {
+                        
                         Task{
                             
                             await viewModel.fetchQuoteItem()
@@ -41,9 +42,8 @@ struct ContentView: View {
                         
                     }
             
-            }
-            
-            
+                }
+        
         }
          
     }

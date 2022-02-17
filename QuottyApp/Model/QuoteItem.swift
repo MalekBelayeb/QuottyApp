@@ -22,10 +22,10 @@ struct QuoteItem
         
         let record = NSManagedObject(entity: entity, insertInto: context)
         
-        record.setValue(self.userResponse?.results?.first?.name, forKey: "author")
+        record.setValue(self.userResponse?.userInfo?.first?.name, forKey: "author")
         record.setValue(self.quoteResponse?.content, forKey: "content")
         record.setValue(self.quoteResponse?.language_code, forKey: "language_code")
-        record.setValue(self.userResponse?.results?.first?.picture?.medium, forKey: "author_img")
+        record.setValue(self.userResponse?.userInfo?.first?.picture?.medium, forKey: "author_img")
         
     }
     

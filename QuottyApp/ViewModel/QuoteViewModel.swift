@@ -60,11 +60,12 @@ class QuoteViewModel:ObservableObject
         DispatchQueue.main.async {
             
             Task{
-                
+                    
                 let quote = await self.getQuote()
                 let author = await self.getAuthor()
                 
                 self.quoteItem = QuoteItem(quoteResponse: quote, userResponse:author)
+            
             }
             
         }

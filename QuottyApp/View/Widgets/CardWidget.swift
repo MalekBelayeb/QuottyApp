@@ -20,7 +20,7 @@ struct CardWidget: View {
             
                 HStack
                 {
-                    if let author = author,let authorResult = author.results,let firstAuthResult = authorResult.first
+                    if let author = author,let authorResult = author.userInfo,let firstAuthResult = authorResult.first
                     {
                         if let picture = firstAuthResult.picture,let imgUrl =  picture.medium {
                                                 
