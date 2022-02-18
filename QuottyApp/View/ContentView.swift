@@ -15,22 +15,21 @@ struct ContentView: View {
     
     var body: some View {
                 
-        NavigationView
+      NavigationView
         {
             
             TabView
             {
-                    
+                 
                 HomeTabView().tabItem{
                     
-                }
+                }.navigationTitle("eeeeeee")
                     
                 FavoriteTabView().tabItem{
                     
-                }
+                }.navigationTitle("dddddd")
                     
-            }.edgesIgnoringSafeArea(.all).navigationBarHidden(true).tabViewStyle(PageTabViewStyle())
-                .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .automatic)).task {
+            }.task {
                     
                     DispatchQueue.main.async {
                         
@@ -43,8 +42,10 @@ struct ContentView: View {
                     }
             
                 }
-        
+            
         }
+        
+        
          
     }
 

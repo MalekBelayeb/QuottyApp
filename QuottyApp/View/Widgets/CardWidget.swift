@@ -43,7 +43,7 @@ struct CardWidget: View {
                     
                 }.frame(maxWidth:.infinity,alignment: .topLeading).padding(.top,20).padding(.leading,20).onTapGesture(perform: {
                     
-                    self.bottomSheetOptions = BottomSheetOptions(bottomSheetStyle: .Half, bottomSheetMode: .AUTHOR_DETAIL)
+                    self.bottomSheetOptions = BottomSheetOptions(bottomSheetStyle: .Quarter, bottomSheetMode: .AUTHOR_DETAIL)
 
                 })
           

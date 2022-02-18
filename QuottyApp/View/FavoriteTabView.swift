@@ -17,7 +17,6 @@ struct FavoriteTabView: View {
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]
         
     }
-
     
     var body: some View {
         

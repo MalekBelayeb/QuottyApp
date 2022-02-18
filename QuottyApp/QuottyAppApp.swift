@@ -9,12 +9,14 @@ import SwiftUI
 
 @main
 struct QuottyAppApp: App {
-    
+     
     let persistenceController = PersistenceController.dbPersistence
-
+     
     var body: some Scene {
         WindowGroup {
+            
             ContentView()
+            
         }
     }
     

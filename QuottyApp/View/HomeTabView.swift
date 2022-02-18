@@ -58,11 +58,11 @@ struct HomeTabView: View {
                     }
                     
                     BottomButton()
-                    Spacer()
                     
                 }.frame(maxHeight:.infinity)
                 
             }.overlay(alignment: .bottom, content: {
+               
                 
                 BottomSheet(withExitOption:false,withDraggingEnabled:true,bottomSheetOptions: $bottomSheetOptions){
                     
@@ -78,7 +78,7 @@ struct HomeTabView: View {
                         
                     }
                     
-                }
+                }.background(.red)
                 
             })
             
@@ -103,7 +103,7 @@ struct BackgroundView:View
                     
                         Spacer()
         
-                }.edgesIgnoringSafeArea(.all)
+                }
                     
         }.frame(alignment:.top)
         
