@@ -29,22 +29,25 @@ struct HomeTabView: View {
     
     @State var bottomSheetOptions : BottomSheetOptions = BottomSheetOptions()
 
+    
+    
     var body: some View {
         
+        NavigationView
+        {
             ZStack(alignment:.center)
             {
                 
                 BackgroundView().background(Color.lightBlueColor)
                 ArcShape().foregroundColor(Color.pinkColor)
+                BlurView(style: .light)
                 
-                VStack(spacing:70)
+                VStack(spacing:60)
                 {
-                    
-                    Spacer()
                     
                     VStack
                     {
-                        
+
                         HStack
                         {
                                 
@@ -59,18 +62,17 @@ struct HomeTabView: View {
                     
                     BottomButton()
                     
-                }.frame(maxHeight:.infinity)
+                }.frame(maxHeight:.infinity).padding(.top,60)
                 
-            }.overlay(alignment: .bottom, content: {
+            }.navigationBarHidden(true).overlay(alignment: .bottom, content: {
                
-                
-                BottomSheet(withExitOption:false,withDraggingEnabled:true,bottomSheetOptions: $bottomSheetOptions){
+                BottomSheet(withExitOption:false,withDraggingEnabled:true,topBarBlurStyle: .systemThinMaterial,bottomSheetOptions: $bottomSheetOptions){
                     
                     if self.bottomSheetOptions.bottomSheetMode == .LANGUAGE_LIST
                     {
                         
                         LanguageListContent()
-                        
+                            
                     }else if self.bottomSheetOptions.bottomSheetMode == .AUTHOR_DETAIL
                     {
                         
@@ -78,11 +80,21 @@ struct HomeTabView: View {
                         
                     }
                     
-                }.background(.red)
+                }
                 
-            })
+            }).overlay(alignment: .top, content: {
+                
+                
+                NavBarView(text:"Quotes App")
+                
+            
+            }).edgesIgnoringSafeArea(.all)
+        }
+            
             
     }
+    
+    
 }
 
 struct BackgroundView:View
@@ -126,9 +138,9 @@ struct ChangeLanguageTopButton:View
             
             Image(systemName: "character.book.closed").foregroundColor(.white).font(.system(size: 20)).padding(.all,10)
             
-        }.background(Color.buttonColor).clipShape(Circle())
+        }.background(Color.cardQuoteColor).clipShape(Circle())
             .shadow(radius: 5).padding(.trailing,30)
-        
+            
     }
     
 }
@@ -157,7 +169,7 @@ struct BottomButton: View {
                 
                 Text("Next Quote").foregroundColor(.white).bold()
                 
-            }.frame(maxWidth:180,maxHeight:45).background(Color.buttonColor).clipShape(RoundedRectangle(cornerRadius: 7, style: .continuous))
+            }.frame(maxWidth:180,maxHeight:45).background(Color.cardQuoteColor).clipShape(RoundedRectangle(cornerRadius: 7, style: .continuous))
                 .padding(.bottom,20).shadow(radius: 5)
             
         }

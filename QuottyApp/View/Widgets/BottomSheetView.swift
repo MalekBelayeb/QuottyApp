@@ -84,7 +84,7 @@ struct BottomSheet<Content: View>:View
     {
      
         let initialHeight = getInitialHeight()
-
+        
         if let currentDraggingLoc = draggingLocation
         {
             let draggingYValue:CGFloat = currentDraggingLoc.y
@@ -92,12 +92,30 @@ struct BottomSheet<Content: View>:View
             if draggingYValue > 0 && draggingYValue < initialHeight
             {
                 
-                if draggingYValue >= (initialHeight / 2)
+                print( draggingYValue, " ", initialHeight / 2 )
+                if self.bottomSheetOptions.bottomSheetStyle.wrappedValue == .Quarter
                 {
+                 
                     
-                    self.bottomSheetOptions.bottomSheetStyle.wrappedValue = .Hidden
+                    if draggingYValue >= (initialHeight - 50)
+                    {
+                        
+                        self.bottomSheetOptions.bottomSheetStyle.wrappedValue = .Hidden
+                        
+                    }
+                    
+                }else{
+                    
+                    if draggingYValue >= (initialHeight / 2)
+                    {
+                        
+                        self.bottomSheetOptions.bottomSheetStyle.wrappedValue = .Hidden
+                        
+                    }
                     
                 }
+                
+                
                 
                 self.bottomSheetHeight = nil
                 self.draggingLocation = nil
@@ -195,7 +213,7 @@ struct BottomSheet<Content: View>:View
                     
                 }
                 
-            }.frame(maxWidth:.infinity,maxHeight:.infinity)
+            }.frame(maxWidth: .infinity,maxHeight: .infinity)
             
         }.cornerRadius(20, corners: [.topRight,.topLeft]).frame(maxHeight:getInitialHeight()).offset(y: self.bottomSheetHeight ?? 0).animation(getAnimation())
         

@@ -64,7 +64,7 @@ struct CardWidget: View {
             
             Spacer()
             
-        }.frame(maxWidth:350, maxHeight:450).background(Color.cardQuoteColor).cornerRadius(7).shadow(color: Color.buttonColor, radius: 10, x: -5, y: 5).overlay(LikeButton(), alignment: .bottom)
+        }.frame(maxWidth:350, maxHeight:450).background(Color.lightBlueColor).cornerRadius(7).shadow(radius: 7).overlay(LikeButton(), alignment: .bottom)
         
     }
     

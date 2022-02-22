@@ -10,26 +10,43 @@ import SwiftUI
 
 struct FavoriteTabView: View {
     
-    
-    init()
-    {
-        
-        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        
-    }
+    @StateObject var viewModelQuote = QuoteViewModel.sharedInstance
     
     var body: some View {
         
-            VStack(alignment:.leading){
+        NavigationView
+        {
+            ZStack(alignment:.leading){
                 
-                HStack
+                Color.lightBlueColor
+                BlurView(style: .light)
+                
+                ScrollView
                 {
-               
-                    Spacer()
+                    Spacer(minLength: 140)
+                    ForEach(viewModelQuote.quoteItems ?? [],id:\.self)
+                    {
+                        item in
+                        
+                        FavoriteItem(item: item)
+                        
+                        Spacer(minLength: 20)
+                        
+                    }
+
+                }
+             
+            }.overlay(alignment: .top, content: {
                 
-                }.padding(.top,60)
- 
-            }.frame(maxWidth:.infinity,maxHeight: .infinity).background(Color.pinkColor)
+                NavBarView(text:"My Favorite")
+                
+            }).navigationBarHidden(true).edgesIgnoringSafeArea(.all).frame(maxWidth:.infinity,maxHeight: .infinity).background(Color.pinkColor).task {
+                
+                self.viewModelQuote.getFavoriteItem()
+                
+            }
+            
+        }
         
     }
 }

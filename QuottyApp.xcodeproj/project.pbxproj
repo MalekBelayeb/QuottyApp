@@ -29,6 +29,8 @@
 		079C705B27B29BDC003F7A48 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079C705927B29BDC003F7A48 /* User.swift */; };
 		07EE0C3627BD3810002F745C /* QuoteItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EE0C3527BD3810002F745C /* QuoteItem.swift */; };
 		07EE0C3927BE6B6A002F745C /* NavBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EE0C3827BE6B6A002F745C /* NavBarModifier.swift */; };
+		07F9FEF327C3BE3700FCCAD0 /* FavoriteItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F9FEF227C3BE3700FCCAD0 /* FavoriteItem.swift */; };
+		07F9FEF627C4FEE500FCCAD0 /* NavBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F9FEF527C4FEE500FCCAD0 /* NavBarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +58,8 @@
 		07EE0C2C27BCF6B2002F745C /* QuottyApp 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "QuottyApp 2.xcdatamodel"; sourceTree = "<group>"; };
 		07EE0C3527BD3810002F745C /* QuoteItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteItem.swift; sourceTree = "<group>"; };
 		07EE0C3827BE6B6A002F745C /* NavBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBarModifier.swift; sourceTree = "<group>"; };
+		07F9FEF227C3BE3700FCCAD0 /* FavoriteItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteItem.swift; sourceTree = "<group>"; };
+		07F9FEF527C4FEE500FCCAD0 /* NavBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +116,7 @@
 		079C703827B29A2A003F7A48 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				07F9FEF427C4FED300FCCAD0 /* Cells */,
 				07EE0C3727BE6B4A002F745C /* ViewModifiers */,
 				079C704827B29B37003F7A48 /* AuthorDetailView.swift */,
 				079C704727B29B37003F7A48 /* ContentView.swift */,
@@ -157,6 +162,7 @@
 				079C703F27B29AEA003F7A48 /* BottomSheetView.swift */,
 				079C704527B29B37003F7A48 /* BlurView.swift */,
 				079C704627B29B37003F7A48 /* CardWidget.swift */,
+				07F9FEF527C4FEE500FCCAD0 /* NavBarView.swift */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -176,6 +182,14 @@
 				07EE0C3827BE6B6A002F745C /* NavBarModifier.swift */,
 			);
 			path = ViewModifiers;
+			sourceTree = "<group>";
+		};
+		07F9FEF427C4FED300FCCAD0 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				07F9FEF227C3BE3700FCCAD0 /* FavoriteItem.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,6 +264,7 @@
 			files = (
 				07EE0C3927BE6B6A002F745C /* NavBarModifier.swift in Sources */,
 				079C702F27B299F8003F7A48 /* Persistence.swift in Sources */,
+				07F9FEF327C3BE3700FCCAD0 /* FavoriteItem.swift in Sources */,
 				079C704E27B29B38003F7A48 /* ContentView.swift in Sources */,
 				079C705727B29BBA003F7A48 /* LanguageViewModel.swift in Sources */,
 				079C704027B29AEA003F7A48 /* WebServiceProvider.swift in Sources */,
@@ -263,6 +278,7 @@
 				079C705A27B29BDC003F7A48 /* Quote.swift in Sources */,
 				079C704C27B29B38003F7A48 /* BlurView.swift in Sources */,
 				079C704227B29AEA003F7A48 /* BottomSheetView.swift in Sources */,
+				07F9FEF627C4FEE500FCCAD0 /* NavBarView.swift in Sources */,
 				07EE0C3627BD3810002F745C /* QuoteItem.swift in Sources */,
 				079C705B27B29BDC003F7A48 /* User.swift in Sources */,
 				079C705127B29B38003F7A48 /* HomeTabView.swift in Sources */,

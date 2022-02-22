@@ -17,6 +17,7 @@ class PersistenceController {
     var containerIsLoaded = false
     let containerName = "QuottyApp"
     
+    
     init(inMemory:Bool = false)
     {
         
@@ -49,8 +50,7 @@ class PersistenceController {
             do{
                 
                 try self.container.viewContext.save()
-                container.viewContext.reset()
-                
+
             }catch let err as NSError {
                 
                 print("Could not save. \(err)")
@@ -90,7 +90,6 @@ class PersistenceController {
                                    in: self.container.viewContext)
         
         let request = NSFetchRequest<NSFetchRequestResult>()
-          
         request.entity = entityDescription
         
         if let sort = sort {
@@ -102,18 +101,21 @@ class PersistenceController {
         }
         
         var objects:[Any] = []
+        
         if containerIsLoaded
         {
-
+            
             do
             {
-                     
+                
                 objects = try self.container.viewContext.fetch(request)
-
+                
             } catch {
-                   print("Unable to fetch.")
+                
+                print(error)
+                
             }
-
+            
         }
         
         return objects as! [T];

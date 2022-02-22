@@ -34,8 +34,8 @@ extension Color
 {
     
     static let lightBlueColor = Color.init(hex:0x7aacb3)
-    static let pinkColor = Color.init(hex:0xcf8da7)
-    
+    static let pinkColor = lightBlueColor.opacity(0.5)
+
     static let buttonColor = Color.init(hex: 0x3b3759)
     static let cardQuoteColor = Color.init(hex: 0x4c6e81)
     

@@ -12,7 +12,10 @@ class QuoteViewModel:ObservableObject
     
     @Published var quoteItem:QuoteItem?
     
+    @Published var quoteItems:[QuoteEntity]?
+    
     public static let sharedInstance = QuoteViewModel()
+    
     
     func getAuthor() async -> RandomUserResponse?
     {
@@ -65,11 +68,23 @@ class QuoteViewModel:ObservableObject
                 let author = await self.getAuthor()
                 
                 self.quoteItem = QuoteItem(quoteResponse: quote, userResponse:author)
-            
+                
+                self.quoteItem?.addToContext(context: PersistenceController.dbPersistence.container.viewContext)
+                
+                PersistenceController.dbPersistence.save()
+                
             }
             
         }
         
     }
+    
+    func getFavoriteItem()
+    {
+    
+        self.quoteItems = PersistenceController.dbPersistence.getAll(forType:QuoteEntity.self)
+        
+    }
+    
     
 }

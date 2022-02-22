@@ -27,6 +27,7 @@ struct LanguageListContent:View
                  VStack(spacing:10)
                  {
                      
+                     
                      ForEach(viewModelLanguage.languageArr,id: \.id)
                      {
                          item in

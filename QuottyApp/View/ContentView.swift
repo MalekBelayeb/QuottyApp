@@ -15,37 +15,31 @@ struct ContentView: View {
     
     var body: some View {
                 
-      NavigationView
+        TabView
         {
             
-            TabView
-            {
-                 
-                HomeTabView().tabItem{
+            HomeTabView().tabItem{
+            
+            }
+                
+            FavoriteTabView().tabItem{
+
+            }
+               
+        }.edgesIgnoringSafeArea(.all).tabViewStyle(.page(indexDisplayMode: .never)).task {
+                
+                DispatchQueue.main.async {
                     
-                }.navigationTitle("eeeeeee")
-                    
-                FavoriteTabView().tabItem{
-                    
-                }.navigationTitle("dddddd")
-                    
-            }.task {
-                    
-                    DispatchQueue.main.async {
+                    Task{
                         
-                        Task{
-                            
-                            await viewModel.fetchQuoteItem()
-                            
-                        }
+                        await viewModel.fetchQuoteItem()
                         
                     }
-            
+                    
                 }
-            
-        }
         
-        
+        }.navigationTitle("Quotes App")
+      
          
     }
 
