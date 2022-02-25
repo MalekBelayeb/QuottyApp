@@ -69,9 +69,9 @@ class QuoteViewModel:ObservableObject
                 
                 self.quoteItem = QuoteItem(quoteResponse: quote, userResponse:author)
                 
-                self.quoteItem?.addToContext(context: PersistenceController.dbPersistence.container.viewContext)
+                //self.quoteItem?.addToContext(context: PersistenceController.dbPersistence.container.viewContext)
                 
-                PersistenceController.dbPersistence.save()
+                //PersistenceController.dbPersistence.save()
                 
             }
             
@@ -83,7 +83,8 @@ class QuoteViewModel:ObservableObject
     {
     
         self.quoteItems = PersistenceController.dbPersistence.getAll(forType:QuoteEntity.self)
-        
+                
+        PersistenceController.dbPersistence.deleteAll(forType: QuoteEntity.self)
     }
     
     

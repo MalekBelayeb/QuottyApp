@@ -31,6 +31,7 @@
 		07EE0C3927BE6B6A002F745C /* NavBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EE0C3827BE6B6A002F745C /* NavBarModifier.swift */; };
 		07F9FEF327C3BE3700FCCAD0 /* FavoriteItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F9FEF227C3BE3700FCCAD0 /* FavoriteItem.swift */; };
 		07F9FEF627C4FEE500FCCAD0 /* NavBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F9FEF527C4FEE500FCCAD0 /* NavBarView.swift */; };
+		07F9FEF827C62A9600FCCAD0 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F9FEF727C62A9500FCCAD0 /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		07EE0C3827BE6B6A002F745C /* NavBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBarModifier.swift; sourceTree = "<group>"; };
 		07F9FEF227C3BE3700FCCAD0 /* FavoriteItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteItem.swift; sourceTree = "<group>"; };
 		07F9FEF527C4FEE500FCCAD0 /* NavBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBarView.swift; sourceTree = "<group>"; };
+		07F9FEF727C62A9500FCCAD0 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 				079C704A27B29B37003F7A48 /* HomeTabView.swift */,
 				079C704327B29B37003F7A48 /* LanguageListView.swift */,
 				079C704427B29B37003F7A48 /* Widgets */,
+				07F9FEF727C62A9500FCCAD0 /* SettingsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07EE0C3927BE6B6A002F745C /* NavBarModifier.swift in Sources */,
+				07F9FEF827C62A9600FCCAD0 /* SettingsView.swift in Sources */,
 				079C702F27B299F8003F7A48 /* Persistence.swift in Sources */,
 				07F9FEF327C3BE3700FCCAD0 /* FavoriteItem.swift in Sources */,
 				079C704E27B29B38003F7A48 /* ContentView.swift in Sources */,

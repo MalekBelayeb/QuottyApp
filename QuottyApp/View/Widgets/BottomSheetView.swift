@@ -92,30 +92,12 @@ struct BottomSheet<Content: View>:View
             if draggingYValue > 0 && draggingYValue < initialHeight
             {
                 
-                print( draggingYValue, " ", initialHeight / 2 )
-                if self.bottomSheetOptions.bottomSheetStyle.wrappedValue == .Quarter
+                if draggingYValue >= (initialHeight / 2)
                 {
-                 
                     
-                    if draggingYValue >= (initialHeight - 50)
-                    {
-                        
-                        self.bottomSheetOptions.bottomSheetStyle.wrappedValue = .Hidden
-                        
-                    }
-                    
-                }else{
-                    
-                    if draggingYValue >= (initialHeight / 2)
-                    {
-                        
-                        self.bottomSheetOptions.bottomSheetStyle.wrappedValue = .Hidden
-                        
-                    }
-                    
+                    self.bottomSheetOptions.bottomSheetStyle.wrappedValue = .Hidden
+
                 }
-                
-                
                 
                 self.bottomSheetHeight = nil
                 self.draggingLocation = nil
@@ -209,7 +191,7 @@ struct BottomSheet<Content: View>:View
                 {
                     
                     BlurView(style: self.bodyBlurStyle)
-                    content()
+                    content().padding(.top,20)
                     
                 }
                 

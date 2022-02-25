@@ -10,39 +10,34 @@ import CoreData
 
 struct ContentView: View {
     
-    
     @StateObject var viewModel = QuoteViewModel.sharedInstance
+    @State var selectedIndex : Int = 0
     
     var body: some View {
-                
+            
+        
         TabView
         {
+        EmptyView()
+             
             
-            HomeTabView().tabItem{
+        }.tabViewStyle(.page(indexDisplayMode: .never)).task {
             
-            }
+            DispatchQueue.main.async {
                 
-            FavoriteTabView().tabItem{
-
-            }
-               
-        }.edgesIgnoringSafeArea(.all).tabViewStyle(.page(indexDisplayMode: .never)).task {
-                
-                DispatchQueue.main.async {
+                Task{
                     
-                    Task{
-                        
-                        await viewModel.fetchQuoteItem()
-                        
-                    }
+                    await viewModel.fetchQuoteItem()
                     
                 }
-        
+                
+            }
+            
         }.navigationTitle("Quotes App")
-      
-         
+        
+        
     }
-
+    
 }
 
 struct ContentView_Previews: PreviewProvider {

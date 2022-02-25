@@ -17,7 +17,6 @@ class PersistenceController {
     var containerIsLoaded = false
     let containerName = "QuottyApp"
     
-    
     init(inMemory:Bool = false)
     {
         

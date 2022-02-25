@@ -20,21 +20,35 @@ struct FavoriteTabView: View {
                 
                 Color.lightBlueColor
                 BlurView(style: .light)
-                
-                ScrollView
+               
+                if viewModelQuote.quoteItems?.count == 0
                 {
-                    Spacer(minLength: 140)
-                    ForEach(viewModelQuote.quoteItems ?? [],id:\.self)
+                    VStack(alignment:.center)
                     {
-                        item in
                         
-                        FavoriteItem(item: item)
-                        
-                        Spacer(minLength: 20)
-                        
-                    }
+                        Text("No quotes found").foregroundColor(.white).font(.largeTitle.weight(.bold))
+                        Text("Please add quotes to your favorite list").foregroundColor(.white).font(.subheadline.weight(.regular))
 
+                    }.frame(maxWidth:.infinity,maxHeight: .infinity,alignment:.center)
+                    
+                }else
+                {
+                    ScrollView
+                    {
+                        Spacer(minLength: 140)
+                        ForEach(viewModelQuote.quoteItems ?? [],id:\.self)
+                        {
+                            item in
+                            
+                            FavoriteItem(item: item)
+                            
+                            Spacer(minLength: 20)
+                            
+                        }
+
+                    }
                 }
+               
              
             }.overlay(alignment: .top, content: {
                 

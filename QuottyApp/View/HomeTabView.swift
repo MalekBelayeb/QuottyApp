@@ -47,10 +47,10 @@ struct HomeTabView: View {
                     
                     VStack
                     {
-
+                        
                         HStack
                         {
-                                
+                            
                             Spacer()
                             ChangeLanguageTopButton(bottomSheetOptions: $bottomSheetOptions)
                             
@@ -72,7 +72,7 @@ struct HomeTabView: View {
                     {
                         
                         LanguageListContent()
-                            
+                        
                     }else if self.bottomSheetOptions.bottomSheetMode == .AUTHOR_DETAIL
                     {
                         
@@ -159,6 +159,7 @@ struct BottomButton: View {
                 DispatchQueue.main.async {
                     
                     Task{
+                        
                         await viewModel.fetchQuoteItem()
                        
                     }
