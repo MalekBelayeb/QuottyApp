@@ -16,10 +16,17 @@ struct ContentView: View {
     var body: some View {
             
         
-        TabView
+        TabView(selection:$selectedIndex)
         {
-        EmptyView()
-             
+            
+            HomeTabView().tabItem{
+                
+            }.tag(0)
+            
+            
+            FavoriteTabView().tabItem{
+                
+            }.tag(1)
             
         }.tabViewStyle(.page(indexDisplayMode: .never)).task {
             
@@ -33,7 +40,22 @@ struct ContentView: View {
                 
             }
             
-        }.navigationTitle("Quotes App")
+        }.edgesIgnoringSafeArea(.all).navigationTitle("Quotes App").overlay(alignment:.bottom)
+        {
+            
+            Button
+            {
+                
+                selectedIndex = 1
+                
+            }label:
+            {
+                
+                Text("sssssssss")
+                
+            }
+            
+        }
         
         
     }
