@@ -16,44 +16,30 @@ class QuoteViewModel:ObservableObject
     
     public static let sharedInstance = QuoteViewModel()
     
+    let headerArr = ["x-rapidapi-host":"quotes15.p.rapidapi.com","x-rapidapi-key":"17b0bf5f66msh74f197c0e1a4c39p1ca7a9jsn69202a169abd"]
     
     func getAuthor() async -> RandomUserResponse?
     {
 
-        do{
+        let urlStr = "https://randomuser.me/api/"
 
-            return try await WebServiceProvider.getRandomUser()
-            
-        }catch{
-            
-            return nil
-            print(error)
-            
-        }
+        return try? await WebServiceProvider.callWebService(urlStr: urlStr)
         
     }
     
     func getQuote() async -> QuotesResponse?
     {
 
-        do{
-            
-            if let lng = LanguageViewModel.sharedInstance.selectedLanguage
-            {
-                
-                return try await WebServiceProvider.getQuotesByLanguage(language: lng.code!)
-                
-            }else{
-                
-                return try await WebServiceProvider.getQuotesByLanguage(language: "en")
-                
-            }
-            
-        }catch{
-            
-            print(error)
-            return nil
+        var urlStr = ""
+    
+        if let lng = LanguageViewModel.sharedInstance.selectedLanguage
+        {
+             urlStr = "https://quotes15.p.rapidapi.com/quotes/random/?language_code="+lng.code!
+        }else{
+            urlStr = "https://quotes15.p.rapidapi.com/quotes/random/?language_code=en"
         }
+        
+        return try? await WebServiceProvider.callWebService(urlStr: urlStr, headerFields: headerArr)
         
     }
     
@@ -68,11 +54,7 @@ class QuoteViewModel:ObservableObject
                 let author = await self.getAuthor()
                 
                 self.quoteItem = QuoteItem(quoteResponse: quote, userResponse:author)
-                
-                //self.quoteItem?.addToContext(context: PersistenceController.dbPersistence.container.viewContext)
-                
-                //PersistenceController.dbPersistence.save()
-                
+        
             }
             
         }
@@ -81,10 +63,10 @@ class QuoteViewModel:ObservableObject
     
     func getFavoriteItem()
     {
-    
+        
         self.quoteItems = PersistenceController.dbPersistence.getAll(forType:QuoteEntity.self)
-                
         PersistenceController.dbPersistence.deleteAll(forType: QuoteEntity.self)
+        
     }
     
     

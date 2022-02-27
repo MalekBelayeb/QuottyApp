@@ -28,8 +28,6 @@ struct HomeTabView: View {
     @StateObject var viewModelLanguage = LanguageViewModel.sharedInstance
     
     @State var bottomSheetOptions : BottomSheetOptions = BottomSheetOptions()
-
-    
     
     var body: some View {
         
