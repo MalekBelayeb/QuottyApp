@@ -10,7 +10,7 @@ import SwiftUI
 struct AuthorDetailView: View {
     
     var author:UserInfo?
-
+    
     var body: some View {
         
         VStack(spacing:20)
